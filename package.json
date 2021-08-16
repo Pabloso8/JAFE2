@@ -7,12 +7,23 @@
   },
   "main": "index.js",
   "scripts": {
+    "test": "node test.js",
+    "build": "cd Front && cd material-kit-react-main && npm run build",
+    "install-client": "cd Front && cd material-kit-react-main && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node index.js",
-    "test": "node test.js"
+    "client": "cd Front && cd material-kit-react-main && npm start",
+    "server": "nodemon index.js",
+    "run-separated": "concurrently -n 'index,client' -c'green,yellow' \"nodemon index.js\" \"npm run client\" "
+ 
   },
   "dependencies": {
+    "concurrently": "^6.2.1",
     "ejs": "^3.1.5",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "express-static-gzip": "^2.1.1",
+    "nodemon": "^2.0.12",
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "got": "^11.3.0",
